@@ -1,0 +1,213 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+    /*według miszcza lepiej wrzucać box sizing do body a potem dziedziczyć stamtąd ów element na każdy następny*/
+}
+
+html {
+    /*font-size: 10px;*/
+    /*dzięki ustawieniu root font size na 10px każdy 1 rem będzie okrągły co ułatwi wyznaczanie dalszych wartości na jego podstawie*/
+    /*ustawienie pikseli przeszkadza podczas powiększania i pomniejszania tekstu przez użytkownika, lepiej stosować procenty z domyślnej wartości przeglądarki*/
+    /*domyślną wartością jest 16px zatem by otrzymać 10 ustawiamy font-size na 62.5%*/
+    font-size: 62.5%;
+}
+
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+/*    font-size: 16px;*/
+    line-height: 1.7;
+    color: #777;
+    padding: 3rem;
+    box-sizing: border-box;
+}
+
+.header {
+    position: relative;
+    height: 95vh;
+    background-image: linear-gradient(
+        to right bottom,
+        rgba(126, 213,111, 0.8),
+        rgba(85, 197, 122, 0.8)),
+        url(../img/hero.jpg);
+    background-size: cover;
+    background-position: top;
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+}
+
+.header__logo-box {
+    position: absolute;
+    /*dając position absolute w parent div trzeba wrzucic position relative, tak aby top/left/bottom/right miały punkt odniesienia | position:absolute potrzebuje odniesienia w postaci position:relative którego będzie szukać*/
+    top: 4rem;
+    left: 4rem;
+}
+
+.header__logo {
+    height: 3.5rem;
+}
+
+.header__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    /*transform:translate ucina w powyższym przypadku połowę z połowy przesunięcia centrując obiekt*/
+    text-align: center;
+    /*dzięki text-align:center przycisk pod nagłówkami main/sub będzie wycentrowany bez zbędnych właściwości*/
+}
+
+.heading-primary {
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 6rem;
+    backface-visibility: hidden;
+    /*backface niweluje drgania animacji tekstu w obu poniższych funkcjach, ukrywa element umieszczony z tyłu*/
+}
+
+.heading-primary--main {
+    display: block;
+    /*element block dodaje line-break automatycznie, tekst jest elementem inline, 'block' zajmuje 100% szerokosci*/
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    
+    /*właściwości animacji stworzonej za pomocą @keyframes*/
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    
+    /*
+    animation-delay: 3s;
+    animation-iteration-count: 3;
+    */
+}
+
+.heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+    
+    /*
+    animation-name: moveInRight;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    */
+    
+    animation: moveInRight 1s ease-out;
+    /*wartości podane powyżej są tymi samymi właściwościami co podane w powyższych wykomentowanych funkcjach, gdy podane są prawidłowo przeglądarka sama wie co jak ugryźć*/
+}
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-10rem);
+    }
+    80% {
+        transform: translateX(1rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(10rem);
+    }
+    80% {
+        transform: translateX(-1rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(3rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+/*:link :visited :hover :active to "sudo-classes", klasy określające zachowanie elementów lub funkcji*/
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    /*tworząc przycisk z paddingiem trzeba dodać wartość inline-block*/
+    border-radius: 10rem;
+    transition: all .2s;
+    /*wrzucając komendę all w transition wszystkie dostępne właściwości są animowane o podany czas, np o 0.2s*/
+    position: relative;
+    backface-visibility: hidden;
+    font-size: 1.6rem;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    /*w CSS obiekty na osi Y poruszają się z góry do dołu, więc by podnieść element do góry trzeba ustawić translateY na wartość ujemną*/
+    box-shadow: 0 1rem 2rem rgba(0,0,0,.2);
+    /*właść box-shadow: wart-X wart-Y wart-blur kolor, 20px wrzuconych na blur daje niewyraźny/daleki cień*/
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.2);
+}
+
+.btn--white {
+    background-color: #fff;
+    color: #777;
+}
+
+/*gdy :link był klasą sudo to ::after jest elementem sudo, sudo-element pozwala stylizować konkretne elementy. wart content i display są niezbędne do prawidłowego działania tej funkcji*/
+.btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+}
+
+.btn--white::after {
+    background-color: #fff;
+}
+
+/*element ::after zadziała tylko w przypadku hover nad przyciskiem, transition by animować wszystko płynnie wrzucamy w funkcje z podanym wcześniej ::after znajdującym się wyżej*/
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+.btn--animated {
+    animation: moveInBottom .5s ease-out .75s;
+    animation-fill-mode: backwards;
+    /*animation-fill-mode:backwards ustawia pozycję 0 animacji (czyli opacity itd) i czeka aż delay przeleci by wystartować z resztą*/
+}

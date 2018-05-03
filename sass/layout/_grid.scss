@@ -1,0 +1,47 @@
+.row {
+    max-width: $grid-width;
+    margin: 0 auto;
+
+    //:not() odnosi się do wszystkiego tylko nie do podanego w nawiasie elementu, w ponizszym przypadku margines będzie wszędzie poza ostatnim dzieckiem
+    &:not(:last-child) {
+        margin-bottom: $gutter-vertical;
+    }
+
+    @include clearfix;
+
+    //class^= działa na takiej zasadzie że dzięki symbolowi potęgi zaznacza wszystkie klasy rozpoczynające się od danej frazy, np. "col-"
+    //symbol potęgi zaznaczyłby wszystkie klasy zawierające frazę w środku
+    //symbol dolara zaznacza wszystkie klasy kończoce się na podaną frazę
+    [class^="col-"] {
+        float: left;
+
+        &:not(:last-child) {
+            margin-right: $gutter-horizontal;
+        }
+    }
+
+    //(100% szerokości - ilość marginesów * długość marginesu) / ilość column
+    .col-1-of-2 {
+        width: calc((100% - #{$gutter-horizontal}) / 2);
+    }
+
+    .col-1-of-3 {
+        width: calc((100% - 2 * #{$gutter-horizontal}) / 3);
+    }
+
+    .col-2-of-3 {
+        width: calc(2 * ((100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal});
+    }
+
+    .col-1-of-4 {
+        width: calc((100% - 3 * #{$gutter-horizontal}) / 4);
+    }
+
+    .col-2-of-4 {
+        width: calc(2 * ((100% - 3 * #{$gutter-horizontal}) / 4) + #{$gutter-horizontal});
+    }
+
+    .col-3-of-4 {
+        width: calc(3 * ((100% - 3 * #{$gutter-horizontal}) / 4) + 2 * #{$gutter-horizontal});
+    }
+}
