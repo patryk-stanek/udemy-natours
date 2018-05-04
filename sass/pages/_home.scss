@@ -34,3 +34,29 @@
     padding: 15rem 0;
     position: relative;
 }
+
+.section-book {
+    padding: 15rem 0;
+    background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+}
+
+.book {
+    //dodając do gradientu stopnie oraz wartości procentowe które się pokrywają uzyskujemy solid-gradient
+    //gradient w podanym przykładzie jest zakrzywione pod kątem 105 stopni a same kolory wypełniają po połowie danej jego części
+    background-image:
+        linear-gradient(105deg,
+        rgba($color-white, .9) 50%,
+        transparent 50%),
+        url(../img/nat-10.jpg);
+    background-size: 100%; //działa tak samo jak cover
+    border-radius: $default-radius;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .2);
+
+
+    height: 50rem; 
+
+    &__form {
+        width: 50%;
+        padding: 6rem;
+    }
+}
