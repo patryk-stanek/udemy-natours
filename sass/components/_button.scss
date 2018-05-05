@@ -1,4 +1,5 @@
 .btn {
+    &,
     &:link,
     &:visited {
         text-transform: uppercase;
@@ -9,7 +10,11 @@
         transition: all .2s;
         position: relative;
         backface-visibility: hidden;
-        font-size: 1.6rem;
+        font-size: $default-font-size;
+
+        //cahnge for the <button> element
+        border: none;
+        cursor: pointer;
     }
 
     &:hover {
@@ -22,14 +27,16 @@
         }
     }
 
-    &:active {
+    &:active,
+    &:focus {
+        outline: none;
         transform: translateY(-1px);
         box-shadow: 0 .5rem 1rem rgba($color-black,.2);
     }
 
     &--white {
         background-color: $color-white;
-        color: $color-gray-dark;
+        color: $color-grey-dark;
 
         &::after {
             background-color: $color-white;
