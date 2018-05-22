@@ -7,7 +7,23 @@
 }
 
 html {
-    font-size: 62.5%;//definition of 1rem, not a part of typography
+    font-size: 62.5%;//definition of 1rem, not a part of typography, equals 10px    
+    
+    //when it comes to media queries bout the width size
+    //BIG ONES BEFORE SMALL ONES
+    //for ex when the screen size is 500 it's still less than 900px so it will apply rules for it
+    //but when the last querie is for the <500 it will use this one
+    @include respond(big-desktop) {
+        font-size: 75%;//1rem=12px, 12/16
+    }
+
+    @include respond(tab-land) { //width<900
+        font-size: 56.25%;//1rem=9px 9/16=56.25%
+    }
+
+    @include respond(tab-port) { //width<600
+        font-size: 50%;//we want 1rem=8px so 8/16=50%
+    }
 }
 
 body {
