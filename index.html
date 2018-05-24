@@ -76,9 +76,38 @@
                             tworzy div o nazwie composition i wrzuca do niego elementy-dzieci img o klasach composition__photo oraz &--p1
                          -->
                         <div class="composition">
+
+                            <!-- 
+                                srcset w poniższym przypadku informuje przeglądarkę ile width mają poszczególne obrazy
+                                sizes informuje przegladarkę ile procent szerokości przeglądarki w maksymalnej podanej wartości zajmuje obraz
+                                przeglądarka sama ustala który z plików ma wybrać
+                                podobnie jak w atrybucie picture na samym końcu podany jest podstawowy src w przypadku używania strony przez starsze przeglądarki
+                                kto kurwa miałby to robić?
+                             -->
+
+                            <img    srcset="img/nat-1.jpg 300w, img/nat-1-large.jpg 1000w"
+                                    sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px"
+                                    alt="Photo-1"
+                                    class="composition__photo composition__photo--p1"
+                                    src="img/nat-1-large.jpg">
+
+                            <img    srcset="img/nat-2.jpg 300w, img/nat-2-large.jpg 1000w"
+                                    sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px"
+                                    alt="Photo-2"
+                                    class="composition__photo composition__photo--p2"
+                                    src="img/nat-2-large.jpg">
+
+                            <img    srcset="img/nat-3.jpg 300w, img/nat-3-large.jpg 1000w"
+                                    sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px"
+                                    alt="Photo-3"
+                                    class="composition__photo composition__photo--p3"
+                                    src="img/nat-3-large.jpg">
+
+                            <!--
                             <img src="img/nat-1-large.jpg" alt="Photo 1" class="composition__photo composition__photo--p1">
                             <img src="img/nat-2-large.jpg" alt="Photo 2" class="composition__photo composition__photo--p2">
                             <img src="img/nat-3-large.jpg" alt="Photo 3" class="composition__photo composition__photo--p3">
+                            -->
                         </div>
                     </div>
                 </div>
@@ -249,7 +278,13 @@
                 <div class="row">
                     <div class="story">
                         <figure class="story__shape">
-                            <img src="img/nat-8.jpg" alt="Person on a tour" class="story__img">
+
+                            <img    srcset="img/nat-8-small.jpg 600w, img/nat-8.jpg 2000w"
+                                    sizes="(max-width: 56.25em) 20vw, 270px"
+                                    alt="Person on a Tour"
+                                    class="story__img"
+                                    src="img/nat-8.jpg">
+
                             <figcaption class="story__caption">
                                 Mary Smith
                             </figcaption>
@@ -268,7 +303,13 @@
                 <div class="row">
                     <div class="story">
                         <figure class="story__shape">
-                            <img src="img/nat-9.jpg" alt="Person on a tour" class="story__img">
+
+                            <img    srcset="img/nat-9-small.jpg 600w, img/nat-9.jpg 2000w"
+                                    sizes="(max-width: 56.25em) 20vw, 270px"
+                                    alt="Person on a Tour"
+                                    class="story__img"
+                                    src="img/nat-9.jpg">
+
                             <figcaption class="story__caption">
                                 Wack Jilson
                             </figcaption>
@@ -334,7 +375,26 @@
         </main>
         <footer class="footer">
             <div class="footer__logo-box">
-                <img src="img/logo-green-2x.png" alt="Full logo" class="footer__logo">
+
+                <!--
+                poniższy przykład to "art direction" wg jonasa
+                w source zawarta jest media query która aktywuje się przy podanej właściwości
+                gdy zostaje aktywowana obrazek z img zostaje zastąpiony podanym w source (z uwzględnieniem gęstości)
+                na samym koncu zostaje zamieszczony podstawowy src w razie gdyby użytkownik strony korzystał z przeglądarki nie wspierającej srcset
+                TYM SPOSOBEM WYMUSZAMY NA PRZEGLADARCE UZYCIE KONKRETNEGO ELEMENTU
+                -->
+                <picture class="footer__logo">
+                    <source srcset="img/logo-green-small-1x.png 1x, img/logo-green-small-2x.png 2x" media="(max-width: 37.5em)">
+                    <img srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x" alt="Full logo" src="img/logo-green-2x.png">
+                </picture>
+
+                
+                <!--
+                src set pozwala na wybranie więcej niż jednego elementu, jednakże trzeba oddzielić je przecinkiem i oznaczyć "gęstość" obiektu
+                
+                <img srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x" alt="Full logo" class="footer__logo">
+                -->
+                
             </div>
             <div class="row">
                 <div class="col-1-of-2">
@@ -359,8 +419,22 @@
         <div class="popup" id="popup">
             <div class="popup__content">
                 <div class="popup__left">
+
+                    <img    srcset="img/nat-8-small.jpg 600w, img/nat-8.jpg 2000w"
+                            sizes="(max-width: 56.25em) 37.5vw, 450px"
+                            alt="Tour Photo"
+                            class="popup__img"
+                            src="img/nat-8.jpg">
+
+                    <img    srcset="img/nat-9-small.jpg 600w, img/nat-9.jpg 2000w"
+                            sizes="(max-width: 56.25em) 37.5vw, 450px"
+                            alt="Tour Photo"
+                            class="popup__img"
+                            src="img/nat-9.jpg">
+                    <!-- 
                     <img src="img/nat-8.jpg" alt="Tour Photo" class="popup__img">
                     <img src="img/nat-9.jpg" alt="Tour Photo" class="popup__img">
+                     -->
                 </div>
                 <div class="popup__right">
                     <a href="#section-tours" class="popup__close">&times;</a>
