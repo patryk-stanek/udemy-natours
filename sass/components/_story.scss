@@ -20,19 +20,25 @@
     }
 
     &__shape {
+        float: left;
         width: 15rem;
         height: 15rem;
-        float: left;
         //po pierwsze shape-outside nie jest w 5/2k18 wspierany przez firefoxa
         //chujnia
         //shape-outside sprawi że tekst będzie otaczał koło w podanym przykładzie, czyli
         //dając zaokrąglone zdjęcie każda linijka tekstu będzie w takiej samej odległości od jego krawędzi
         -webkit-shape-outside: circle(50% at 50% 50%);
         shape-outside: circle(50% at 50% 50%);
-        -webkit-clip-path: circle(50% at 50% 50%);
-        clip-path: circle(50% at 50% 50%);
         transform: translateX(-3rem) skewX(12deg);
         position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+
+        @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+            -webkit-clip-path: circle(50% at 50% 50%);
+            clip-path: circle(50% at 50% 50%);
+            border-radius: none;
+        }
 
         @include respond(phone) {
             transform: translateX(-3rem) skewX(0);
