@@ -172,7 +172,10 @@
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    @include respond(tab-port) {
+    //@include respond(tab-port) {
+    @media  only screen and (max-width: 56.25em),
+            only screen and (hover: none) {
+            //karta będzie widoczna wtedy gdy ekran jest mniejszy niż podana wartość LUB gdy nie ma możliwości hover nad obiektem
         height: auto;
         border-radius: $default-radius;
         background-color: $color-white;
