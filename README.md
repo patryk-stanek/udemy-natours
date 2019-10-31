@@ -1,1 +1,1 @@
-# udemy__natours
+# Project made with Udemy course by Jonas Schmedtmann
